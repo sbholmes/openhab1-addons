@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product>
+    <Model>ZW116</Model>
+    <Label lang="en">Aeotec Nano Switch</Label>
+
+    <CommandClasses>
+        <Class>
+            <id>0x00</id>             <!-- NO_OPERATION -->
+        </Class>
+        <Class>
+            <id>0x20</id>             <!-- BASIC -->
+        </Class>
+        <Class>
+            <id>0x25</id>             <!-- SWITCH_BINARY -->
+        </Class>
+        <Class>
+            <id>0x27</id>             <!-- SWITCH_ALL -->
+        </Class>
+        <Class>
+            <id>0x2B</id>             <!-- SCENE_ACTIVATION -->
+        </Class>
+        <Class>
+            <id>0x2C</id>             <!-- SCENE_ACTUATOR_CONF -->
+        </Class>
+        <Class>
+            <id>0x32</id>             <!-- METER -->
+        </Class>
+        <Class>
+            <id>0x59</id>             <!-- ASSOCIATION_GROUP_INFO -->
+        </Class>
+        <Class>
+            <id>0x5A</id>             <!-- DEVICE_RESET_LOCALLY -->
+        </Class>
+        <Class>
+            <id>0x5E</id>             <!-- ZWAVE_PLUS_INFO -->
+        </Class>
+        <Class>
+            <id>0x70</id>             <!-- CONFIGURATION -->
+        </Class>
+        <Class>
+            <id>0x71</id>             <!-- ALARM -->
+        </Class>
+        <Class>
+            <id>0x72</id>             <!-- MANUFACTURER_SPECIFIC -->
+        </Class>
+        <Class>
+            <id>0x73</id>             <!-- POWERLEVEL -->
+        </Class>
+        <Class>
+            <id>0x7A</id>             <!-- FIRMWARE_UPDATE_MD -->
+        </Class>
+        <Class>
+            <id>0x81</id>             <!-- CLOCK -->
+        </Class>
+        <Class>
+            <id>0x85</id>             <!-- ASSOCIATION -->
+        </Class>
+        <Class>
+            <id>0x86</id>             <!-- VERSION -->
+        </Class>
+    </CommandClasses>
+
+    <Configuration>
+
+        <Parameter>
+            <Index>3</Index>
+            <Label lang="en">Current Overload Protection</Label>
+            <Type>list</Type>
+            <Default>1</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">(Default) Enable</Label>
+            </Item>
+            <Help><![CDATA[Current Overload Protection
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>4</Index>
+            <Label lang="en">Overheat protection</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">(Default) Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Enable</Label>
+            </Item>
+            <Help><![CDATA[Overheat protection
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>9</Index>
+            <Label lang="en">Instant Energy Autosend Interval (SENSOR_MULTILEVEL_REPORT)</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>255</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Instant Energy Autosend Interval (SENSOR_MULTILEVEL_REPORT)
+<p>Send SENSOR_MULTILEVEL_REPORT at this interval</p> <p>0 means to not send</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>20</Index>
+            <Label lang="en">Output status after re-power</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>2</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Last status</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Always on</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Always off</Label>
+            </Item>
+            <Help><![CDATA[Configure the output status after re-power on it
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>80</Index>
+            <Label lang="en">Group 1 notifications</Label>
+            <Type>list</Type>
+            <Default>3</Default>
+            <Minimum>0</Minimum>
+            <Maximum>3</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Send Nothing</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Send Hail CC</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Send Basic Report CC</Label>
+            </Item>
+            <Item>
+                <Value>3</Value>
+                <Label lang="en">Send Hail CC when using the manual switch to change the load</Label>
+            </Item>
+            <Help><![CDATA[Group 1 notifications when the state of Nano Switch's load is changed
+<p>To set which notification would be sent to the associated devices (Group 1) when the state of Nano Switch's load is changed.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>81</Index>
+            <Label lang="en">Group 3 notifications</Label>
+            <Type>list</Type>
+            <Default>1</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Send Nothing</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Send Basic Set CC</Label>
+            </Item>
+            <Help><![CDATA[Notification to sent for Group 3 when using the external switch 1
+<p>To set which notification would be sent to the associated nodes in association Group 3 when using the external switch 1 to switch the loads.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>82</Index>
+            <Label lang="en">Group 4 notifications</Label>
+            <Type>list</Type>
+            <Default>1</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Send Nothing</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Send Basic Set CC</Label>
+            </Item>
+            <Help><![CDATA[Notification to sent for Group 4 when using the external switch 2
+<p>To set which notification would be sent to the associated nodes in association Group 4 when using the external switch 2 to switch the loads.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>83</Index>
+            <Label lang="en">Configure the state of LED</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>2</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Energy mode. The LED will follow the status (on/off)</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Momentary indicate mode</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Night light mode. The LED will remain ON state</Label>
+            </Item>
+            <Help><![CDATA[Configure the state of LED when it is in 3 modes
+<p>Configure the state of LED when it is in 3 modes (Energy mode, Momentary indicate mode, Night light mode)</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>84</Index>
+            <Label lang="en">Night light mode LED state</Label>
+            <Type>short</Type>
+            <Default>301991936</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Set the ON/OFF time of the LED when it is in Night light mode
+<p>0 to 60 The minute time of OFF 256 to 316 The hour time of OFF 65536 to 65596 The minute time of ON 16777216 to 16777276 The hour time of ON</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>86</Index>
+            <Label lang="en">Set appointment 1</Label>
+            <Type>short</Type>
+            <Default>8327680</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Set the ON time of output load.
+<p>65536 to 65543 The day value (Mon to Sun) 16777216 Enable the setting. 256 to 316 The hour value of ON time 16777215 Disable the setting. 0 to 60 The minute value of ON time</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>87</Index>
+            <Label lang="en">Set appointment 2</Label>
+            <Type>short</Type>
+            <Default>8327680</Default>
+            <Minimum>0</Minimum>
+            <Maximum>8327680</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Set the OFF time of output load
+<p>256 to 316 The hour value of ON time 65536 to 65543 The day value (Mon to Sun) 16777215 Disable the setting. 0 to 60 The minute value of ON time 16777216 Enable the setting.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>90</Index>
+            <Label lang="en">Enables/disables parameter 91 and 92 </Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">(Default) Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Enable</Label>
+            </Item>
+            <Help><![CDATA[Enables/disables parameter 91 and 92 
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>91</Index>
+            <Label lang="en">Set the threshold value of wattage</Label>
+            <Type>short</Type>
+            <Default>25</Default>
+            <Minimum>0</Minimum>
+            <Maximum>60000</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[Threshold change in wattage (in terms of wattage) to induce an automatic report
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>92</Index>
+            <Label lang="en">Set the threshold value of wattage</Label>
+            <Type>short</Type>
+            <Default>5</Default>
+            <Minimum>0</Minimum>
+            <Maximum>100</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Threshold percentage change in wattage for an automatic report
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>100</Index>
+            <Label lang="en">Set parameter 101-103 to default value</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>1</Size>
+            <Help><![CDATA[Reset the parameter 101-103
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>100</Index>
+            <Label lang="en">Set parameter 101-103 to default value</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>1</Size>
+            <Help><![CDATA[Reset the parameter 101-103
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>101</Index>
+            <Label lang="en">Set group 1 reports</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>4</Size>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Send Meter Report of energy (kWh)</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Send Meter Report of wattage (W)</Label>
+            </Item>
+            <Item>
+                <Value>4</Value>
+                <Label lang="en">Send Meter Report of voltage (V)</Label>
+            </Item>
+            <Item>
+                <Value>8</Value>
+                <Label lang="en">Send Meter Report of current (A)</Label>
+            </Item>
+            <Help><![CDATA[To set which reports need to be sent in Report group 1.
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>102</Index>
+            <Label lang="en">Set group 2 reports</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>4</Size>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Send Meter Report of energy (kWh)</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Send Meter Report of wattage (W)</Label>
+            </Item>
+            <Item>
+                <Value>4</Value>
+                <Label lang="en">Send Meter Report of voltage (V)</Label>
+            </Item>
+            <Item>
+                <Value>8</Value>
+                <Label lang="en">Send Meter Report of current (A)</Label>
+            </Item>
+            <Help><![CDATA[To set which reports need to be sent in Report group 2.
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>103</Index>
+            <Label lang="en">Set group 3 reports</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>4</Size>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Send Meter Report of voltage (V)</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Send Meter Report of current (A)</Label>
+            </Item>
+            <Item>
+                <Value>4</Value>
+                <Label lang="en">Send Meter Report of wattage (W)</Label>
+            </Item>
+            <Item>
+                <Value>8</Value>
+                <Label lang="en">Send Meter Report of energy (kWh)</Label>
+            </Item>
+            <Help><![CDATA[To set which reports need to be sent in Report group 3.
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>110</Index>
+            <Label lang="en">Reset the parameter 111-113</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Set parameter 111-113 to default value.
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>111</Index>
+            <Label lang="en">Interval for automatic report group 1.</Label>
+            <Type>short</Type>
+            <Default>600</Default>
+            <Minimum>1</Minimum>
+            <Maximum>2147483647</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[ Set the interval of automatic report for Report group 1.
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>112</Index>
+            <Label lang="en">Interval for automatic report group 2</Label>
+            <Type>short</Type>
+            <Default>600</Default>
+            <Minimum>1</Minimum>
+            <Maximum>2147483647</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[ Set the interval of automatic report for Report group 2.
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>113</Index>
+            <Label lang="en">Interval for automatic group 3 report</Label>
+            <Type>short</Type>
+            <Default>600</Default>
+            <Minimum>1</Minimum>
+            <Maximum>2147483647</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Set the interval of automatic report for Report group 3
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>120</Index>
+            <Label lang="en">External switch mode for S1</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Enter automatic identification mode</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">2-state switch mode</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">3 way switch mode</Label>
+            </Item>
+            <Item>
+                <Value>3</Value>
+                <Label lang="en">Momentary push button mode</Label>
+            </Item>
+            <Help><![CDATA[Configure the external switch mode for S1
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>121</Index>
+            <Label lang="en">External switch mode for S2</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Enter automatic identification mode</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">2-state switch mode</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">3 way switch mode</Label>
+            </Item>
+            <Item>
+                <Value>3</Value>
+                <Label lang="en">Momentary push button mode</Label>
+            </Item>
+            <Help><![CDATA[Configure the external switch mode for S2
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>122</Index>
+            <Label lang="en">Control destination of external switch</Label>
+            <Type>list</Type>
+            <Default>3</Default>
+            <Minimum>0</Minimum>
+            <Maximum>3</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">control the output loads of itself</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">control the other nodes</Label>
+            </Item>
+            <Item>
+                <Value>3</Value>
+                <Label lang="en">control the output loads of itself and other nodes</Label>
+            </Item>
+            <Help><![CDATA[Set the control destination for external switch
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>252</Index>
+            <Label lang="en">Lock/unlock configuration parameters</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Unlock</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Lock</Label>
+            </Item>
+            <Help><![CDATA[Lock/unlock configuration parameters
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>255</Index>
+            <Label lang="en">Reset the Nano Switch</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <Size>4</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">(Default) Reset all configuration parameters</Label>
+            </Item>
+            <Item>
+                <Value>1431655765</Value>
+                <Label lang="en">Reset and remove from network</Label>
+            </Item>
+        </Parameter>
+
+    </Configuration>
+
+    <Associations>
+
+        <Group>
+            <Index>1</Index>
+            <Label lang="en">Lifeline</Label>
+            <Maximum>5</Maximum>
+            <SetToController>true</SetToController>
+        </Group>
+
+        <Group>
+            <Index>2</Index>
+            <Label lang="en">Forward Group 2</Label>
+            <Maximum>5</Maximum>
+        </Group>
+
+        <Group>
+            <Index>3</Index>
+            <Label lang="en">Send Basic Set to Group 3</Label>
+            <Maximum>5</Maximum>
+        </Group>
+
+    </Associations>
+
+</Product>

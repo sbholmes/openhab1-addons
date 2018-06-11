@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Product>
+    <Model>ZW100</Model>
+    <Label lang="en">Multisensor 6</Label>
+
+    <CommandClasses>
+        <Class>
+            <id>0x00</id>             <!-- NO_OPERATION -->
+        </Class>
+        <Class>
+            <id>0x20</id>             <!-- BASIC -->
+        </Class>
+        <Class>
+            <id>0x30</id>             <!-- SENSOR_BINARY -->
+        </Class>
+        <Class>
+            <id>0x31</id>             <!-- SENSOR_MULTILEVEL -->
+        </Class>
+        <Class>
+            <id>0x59</id>             <!-- ASSOCIATION_GROUP_INFO -->
+        </Class>
+        <Class>
+            <id>0x5A</id>             <!-- DEVICE_RESET_LOCALLY -->
+        </Class>
+        <Class>
+            <id>0x5E</id>             <!-- ZWAVE_PLUS_INFO -->
+        </Class>
+        <Class>
+            <id>0x70</id>             <!-- CONFIGURATION -->
+        </Class>
+        <Class>
+            <id>0x71</id>             <!-- ALARM -->
+        </Class>
+        <Class>
+            <id>0x72</id>             <!-- MANUFACTURER_SPECIFIC -->
+        </Class>
+        <Class>
+            <id>0x73</id>             <!-- POWERLEVEL -->
+        </Class>
+        <Class>
+            <id>0x7A</id>             <!-- FIRMWARE_UPDATE_MD -->
+        </Class>
+        <Class>
+            <id>0x80</id>             <!-- BATTERY -->
+        </Class>
+        <Class>
+            <id>0x84</id>             <!-- WAKE_UP -->
+        </Class>
+        <Class>
+            <id>0x85</id>             <!-- ASSOCIATION -->
+        </Class>
+        <Class>
+            <id>0x86</id>             <!-- VERSION -->
+        </Class>
+    </CommandClasses>
+
+    <Configuration>
+
+        <Parameter>
+            <Index>2</Index>
+            <Label lang="en">Stay Awake in Battery Mode			</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Enable</Label>
+            </Item>
+            <Help><![CDATA[Stay awake for 10 minutes at power on
+<p>Enable/Disable waking up for 10 minutes when re-power on (battery mode) the MultiSensor.<br />1. Value = 0, disable.<br />2. Value =others, enable.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>3</Index>
+            <Label lang="en">Motion Sensor reset timeout</Label>
+            <Type>short</Type>
+            <Default>240</Default>
+            <Minimum>10</Minimum>
+            <Maximum>3600</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[Motion Sensor reset timeout
+<ol><li>The default PIR time is 4 minutes. The Multisensor will send BASIC SET CC (0x00) to the associated nodes if no motion is triggered again in 4 minutes.</li> <li>Range: 10~3600.</li> </ol><p><strong>Note</strong>:</p> <ol><li>The time unit is second if the value range is in 10 to 255.</li> <li>If the value range is in 256 to 3600, the time unit will be minute and its value should follow the below rules:<br />a), Interval time =Value/60, if the interval time can be divided by 60 and without remainder.<br />b), Interval time= (Value/60) +1, if the interval time can be divided by 60 and has remainder.</li> <li>Other values will be ignored.</li> </ol>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>4</Index>
+            <Label lang="en">Motion sensor sensitivity</Label>
+            <Type>list</Type>
+            <Default>5</Default>
+            <Minimum>0</Minimum>
+            <Maximum>255</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Enable, sensitivity level 1 (minimum)</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Enable, sensitivity level 2</Label>
+            </Item>
+            <Item>
+                <Value>3</Value>
+                <Label lang="en">Enable, sensitivity level 3</Label>
+            </Item>
+            <Item>
+                <Value>4</Value>
+                <Label lang="en">Enable, sensitivity level 4</Label>
+            </Item>
+            <Item>
+                <Value>5</Value>
+                <Label lang="en">Enable, sensitivity level 5 (maximum)</Label>
+            </Item>
+            <Help><![CDATA[ Sensitivity level of PIR sensor (1=minimum, 5=maximum)
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>5</Index>
+            <Label lang="en">Motion Sensor Triggered Command</Label>
+            <Type>list</Type>
+            <Default>1</Default>
+            <Minimum>0</Minimum>
+            <Maximum>255</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Send Basic Set CC</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Send Sensor Binary Report CC</Label>
+            </Item>
+        </Parameter>
+
+        <Parameter>
+            <Index>8</Index>
+            <Label lang="en">Timeout after wake up</Label>
+            <Type>short</Type>
+            <Default>30</Default>
+            <Minimum>8</Minimum>
+            <Maximum>255</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Set the timeout of awake after the Wake Up CC is sent out...
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>9</Index>
+            <Label lang="en">Report the current power mode</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>65535</Maximum>
+            <ReadOnly>true</ReadOnly>
+            <Size>2</Size>
+            <Help><![CDATA[Report the current power mode and the product state of battery power mode
+<p>Value1 (MSB): 0x00=USB power mode, 0x01=Battery power mode</p> <p>Value2 (LSB): 0x00=keep sleep state for Battery power mode, 0x01=keep awake for 10 minutes for battery power mode</p> <p>NOTE: this parameter cannot be used as Get/Set usage</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>39</Index>
+            <Label lang="en">Low Battery Report</Label>
+            <Type>short</Type>
+            <Default>20</Default>
+            <Minimum>10</Minimum>
+            <Maximum>50</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Report Low Battery if below this value
+<p>Configure low battery value.<br />Value=10 to 50.(10% to 50%)</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>40</Index>
+            <Label lang="en">Selective Reporting</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Enable</Label>
+            </Item>
+            <Help><![CDATA[Select to report on thresholds
+<p>Enable/disable the selective reporting only when measurements reach a certain threshold or percentage set in 41-44 below. This is used to reduce network traffic. (0 == disable, 1 == enable)</p> <p>Note: If USB Power, the Sensor will check threshold every 10 seconds. If battery power, the Sensor will check the threshold when it is waken up.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>41</Index>
+            <Label lang="en">Temperature Threshold</Label>
+            <Type>list</Type>
+            <Default>20</Default>
+            <Minimum>0</Minimum>
+            <Maximum>2678400</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>4</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Temperature Threshold Unit</Label>
+            </Item>
+            <Help><![CDATA[Temperature change threshold
+<p>Threshold change in temperature to induce an automatic report.<br /><strong>Note</strong>:</p> <ol><li>The unit is Fahrenheit for US version, Celsius for EU/AU version.</li> <li>High byte is the threshold value. Low byte is the unit (0x01=Celsius, 0x02=Fahrenheit).</li> <li>The threshold value (high byte) contains one decimal point. E.g. if the value is set to 20 (0x1401), the threshold value =2.0°C (EU/AU version) or if the value is set to 20 (0x1402), the threshold value=2.0 °F (US version). When the current temperature gap is more then 2.0, which will induce a temperature report to be sent out.</li> </ol>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>42</Index>
+            <Label lang="en">Humidity Threshold</Label>
+            <Type>short</Type>
+            <Default>10</Default>
+            <Minimum>0</Minimum>
+            <Maximum>100</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Humidity percent change threshold
+<p>Threshold change in humidity to induce an automatic report.<br />Note:<br />1. The unit is %.<br />2. The default value is 10, which means that if the current humidity gap is<br />more than 10%, it will send out a humidity report.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>43</Index>
+            <Label lang="en">Luminance Threshold</Label>
+            <Type>short</Type>
+            <Default>100</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1000</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[ Luminance change threshold
+<p>Threshold change in luminance to induce an automatic report.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>44</Index>
+            <Label lang="en">Battery Threshold</Label>
+            <Type>short</Type>
+            <Default>10</Default>
+            <Minimum>0</Minimum>
+            <Maximum>100</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Battery level threshold
+<p>Threshold change in battery level to induce an automatic report.</p> <p>Note:<br />1. The unit is %.<br />2. The default value is 10, which means that if the current battery level gap is<br />more than 10%, it will send out a battery report.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>45</Index>
+            <Label lang="en">Ultraviolet Threshold</Label>
+            <Type>short</Type>
+            <Default>2</Default>
+            <Minimum>0</Minimum>
+            <Maximum>100</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Ultraviolet change threshold
+<p>Threshold change in ultraviolet to induce an automatic report.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>46</Index>
+            <Label lang="en">Send Alarm Report if low temperature</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>255</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Enable</Label>
+            </Item>
+            <Help><![CDATA[Send an alarm report if temperature is less than -15 °C
+<p>Enable/Disable to send the alarm report of low temperature (&lt;-15°C)</p> <p>Value=0, disable</p> <p>Value=1, enable (The MultiSensor will send a report of Multi Level Temperature CC to controller if the current temperature is less then -15°C).</p> <p>Note: The battery activity will reduced at low temperatures (-15 degrees Celsius and below), wich will lead to the product may not work normally. It is recommended to use USB power at low temperatures.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>48</Index>
+            <Label lang="en">Send a report if the measurement is out of limits</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>255</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Send a report when the measurement is more than the upper limit value or less than the lower limit value.
+<p>Enable/disable to send a report when the measurement is more than the upper limit value or less than the lower limit value.</p> <p>Bit mask = 0, disable.</p> <p>Bit mask = 1, enable.</p> <p>Bit 0 = temperature.</p> <p>Bit 1 = humidity.</p> <p>Bit 2 = luminance.</p> <p>Bit 3 = ultraviolet.</p> <p>The above bit masks are used to enable/disable to send out a report when the measurement is less than the lower limit value. The below bit masks are used to enable/disable to send out a report when the measurement is more than the upper limit value</p> <p>Bit 4 = temperature.</p> <p>Bit 5 = humidity.</p> <p>Bit 6 = luminance.</p> <p>Bit 7 = ultraviolet.</p> <p><em>Note:</em> If USB power, the Sensor will check the limit every 10 seconds. If battery power, the Sensor will check the limit when it is waken up. </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>49</Index>
+            <Label lang="en">Upper limit value of temperature sensor</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>4</Size>
+            <Help><![CDATA[Upper limit value of temperature sensor
+<p>Set the upper limit value of temperature sensor. When the measurement is more than this upper limit, which will trigger to sent out a sensor report.</p> <p>High byte is the upper limit value. Low bytes represent the unit (0x0100=Celsius, 0x0200=Fahrenheit).</p> <p>1. When unit is Celsius.</p> <p>Upper limit range: -40.0 to 100.0 ℃ (0xFE70 to 0x03E8). E.g. The default upper limit of EU/AU version is 28.0 ℃ (0x0118), when the measurement is more than 28.0℃, it will be triggered to send out a temperature sensor report.</p> <p>2. When unit is Fahrenheit.</p> <p>Upper limit range: -40.0 to 212.0 ℉ (0xFE70 to 0x0848). E.g. The default upper limit of US version is 82.4℉ (0X0338), when the measurement is more than 82.4℉, it will be triggered to send out a temperature sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>50</Index>
+            <Label lang="en">Lower limit value of temperature sensor</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>0</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>4</Size>
+            <Help><![CDATA[Lower limit value of temperature sensor
+<p>Set the lower limit value of temperature sensor. When the measurement is less than this lower limit, which will trigger to sent out a sensor report. High byte is the lower limit value. Low bytes represent the unit (0x0100=Celsius, 0x0200=Fahrenheit).</p> <p>1. When unit is Celsius.</p> <p>Lower limit range: -40.0 to 100.0 ℃ (0xFE70 to 0x03E8). E.g. The default lower limit of EU/AU version is 0 ℃ (0x0000), when the measurement is less than 0℃, it will be triggered to send out a temperature sensor report.</p> <p>2. When unit is Fahrenheit.</p> <p>Upper limit range: -40.0 to 212.0 ℉ (0xFE70 to 0x0848). E.g. The default lower limit of US version is 32.0℉ (0x0140), when the measurement is less than 32.0℉, it will be triggered to send out a temperature sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>51</Index>
+            <Label lang="en">Upper limit value of humidity sensor</Label>
+            <Type>short</Type>
+            <Default>60</Default>
+            <Minimum>0</Minimum>
+            <Maximum>100</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Upper limit value of humidity sensor
+<p>Set the upper limit value of humidity sensor. When the measurement is more than this upper limit, which will trigger to sent out a sensor report. Upper limit range: 0 to 100%. E.g. The default upper limit is 60%, when the measurement is more than 60%, it will be triggered to send out a humidity sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>52</Index>
+            <Label lang="en">Lower limit value of humidity sensor</Label>
+            <Type>short</Type>
+            <Default>50</Default>
+            <Minimum>0</Minimum>
+            <Maximum>100</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Lower limit value of humidity sensor
+<p>Set the lower limit value of humidity sensor. When the measurement is less than this lower limit, which will trigger to sent out a sensor report. Lower limit range: 0 to 100%.</p> <p>E.g. The default lower limit is 50%, when the measurement is less than 50%, it will be triggered to send out a humidity sensor report. </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>53</Index>
+            <Label lang="en">Upper limit value of Lighting sensor</Label>
+            <Type>short</Type>
+            <Default>1000</Default>
+            <Minimum>0</Minimum>
+            <Maximum>30000</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[Upper limit value of Lighting sensor
+<p>Set the upper limit value of Lighting sensor. When the measurement is more than this upper limit, which will trigger to sent out a sensor report. Upper limit range: 0 to 30000 Lux.</p> <p>E.g. The default upper limit is 1000Lux, when the measurement is more than 1000Lux, it will be triggered to send out a Lighting sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>54</Index>
+            <Label lang="en">Lower limit value of Lighting sensor</Label>
+            <Type>short</Type>
+            <Default>100</Default>
+            <Minimum>0</Minimum>
+            <Maximum>30000</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[Lower limit value of Lighting sensor
+<p>Set the lower limit value of Lighting sensor. When the measurement is less than this lower limit, which will trigger to sent out a sensor report. Lower limit range: 0 to 30000 Lux.</p> <p>E.g. The default lower limit is 100Lux, when the measurement is less than 100Lux, it will be triggered to send out a Lighting sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>55</Index>
+            <Label lang="en">Upper limit value of ultraviolet sensor</Label>
+            <Type>short</Type>
+            <Default>8</Default>
+            <Minimum>1</Minimum>
+            <Maximum>11</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Upper limit value of ultraviolet sensor
+<p>Set the upper limit value of ultraviolet sensor. When the measurement is more than this upper limit, which will trigger to sent out a sensor report. Upper limit range: 1 to 11.</p> <p>E.g. The default upper limit is 8, when the measurement is more than 8, it will be triggered to send out a ultraviolet sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>56</Index>
+            <Label lang="en">Lower limit value of ultraviolet sensor</Label>
+            <Type>short</Type>
+            <Default>4</Default>
+            <Minimum>1</Minimum>
+            <Maximum>11</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Lower limit value of ultraviolet sensor
+<p>Set the lower limit value of ultraviolet sensor. When the measurement is less than this upper limit, which will trigger to sent out a sensor report. Lower limit range: 1 to 11.</p> <p>E.g. The default lower limit is 4, when the measurement is less than 8, it will be triggered to send out a ultraviolet sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>57</Index>
+            <Label lang="en">Recover limit value of temperature sensor</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>65535</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[Recover limit value of temperature sensor
+<p>Set the recover limit value of temperature sensor.</p> <p><em>Note</em>:</p> <p>1. When the current measurement &lt;= (Upper limit – Recover limit), the upper limit report is enabled and then it would send out a sensor report when the next measurement is more than the upper limit. After that the upper limit report would be disabled again until the measurement &lt;= (Upper limit – Recover limit).</p> <p>2. When the current measurement &gt;= (Lower limit + Recover limit), the lower limit report is enabled and then it would send out a sensor report when the next measurement is less than the lower limit. After that the lower limit report would be disabled again until the measurement &gt;= (Lower limit + Recover limit).</p> <p>3. High byte is the recover limit value. Low byte is the unit (0x01=Celsius, 0x02=Fahrenheit).</p> <p>4. Recover limit range: 1.0 to 25.5 ℃/ ℉ (0x0101 to 0xFF01 or 0x0102 to 0xFF02).</p> <p>E.g. The default recover limit value is 2.0 ℃/℉ (0x1401/0x1402), when the measurement is less than (Upper limit – 2), the upper limit report would be enabled one time or when the measurement is more</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>58</Index>
+            <Label lang="en"> Recover limit value of humidity sensor</Label>
+            <Type>short</Type>
+            <Default>5</Default>
+            <Minimum>1</Minimum>
+            <Maximum>50</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[ Recover limit value of humidity sensor
+<p>Set the recover limit value of humidity sensor.</p> <p><em>Note</em>:</p> <p>1. When the current measurement &lt;= (Upper limit – Recover limit), the upper limit report is enabled and then it would send out a sensor report when the next measurement is more than the upper limit. After that the upper limit report would be disabled again until the measurement &lt;= (Upper limit – Recover limit).</p> <p>2. When the current measurement &gt;= (Lower limit + Recover limit), the lower limit report is enabled and then it would send out a sensor report when the next measurement is less than the lower limit. After that the lower limit report would be disabled again until the measurement &gt;= (Lower limit + Recover limit).</p> <p>3. Recover limit range: 1 to 50% (0x01 to 0x32).</p> <p>E.g. The default recover limit value is 5%, when the measurement is less than (Upper limit – 5), the upper limit report would be enabled one time or when the measurement is more than (Lower limit + 5), the lower limit report would be enabled one time. </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>59</Index>
+            <Label lang="en">Recover limit value of Lighting sensor. </Label>
+            <Type>short</Type>
+            <Default>10</Default>
+            <Minimum>1</Minimum>
+            <Maximum>255</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Recover limit value of Lighting sensor. 
+<p>Set the recover limit value of Lighting sensor.</p> <p><em>Note</em>:</p> <p>1. When the current measurement &lt;= (Upper limit – Recover limit), the upper limit report is enabled and then it would send out a sensor report when the next measurement is more than the upper limit. After that the upper limit report would be disabled again until the measurement &lt;= (Upper limit – Recover limit).</p> <p>2. When the current measurement &gt;= (Lower limit + Recover limit), the lower limit report is enabled and then it would send out a sensor report when the next measurement is less than the lower limit. After that the lower limit report would be disabled again until the measurement &gt;= (Lower limit + Recover limit).</p> <p>3. Unit = 10×Recover limit (Lux)</p> <p>4. <strong>Recover limit range: 10 to 2550Lux (0x01 to 0xFF). </strong></p> <p>E.g. The default recover limit value is 100 Lux, when the measurement is less than (Upper limit – 100), the upper limit report would be enabled one time or when the measurement is more than (Lower limit + 100), the lower limit report would be enabled one time. </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>60</Index>
+            <Label lang="en">Recover limit value of Ultraviolet sensor</Label>
+            <Type>short</Type>
+            <Default>2</Default>
+            <Minimum>1</Minimum>
+            <Maximum>5</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Recover limit value of Ultraviolet sensor
+<p>Set the recover limit value of Ultraviolet sensor.</p> <p><em>Note</em>:</p> <p>1. When the current measurement &lt;= (Upper limit – Recover limit), the upper limit report is enabled and then it would send out a sensor report when the next measurement is more than the upper limit. After that the upper limit report would be disabled again until the measurement &lt;= (Upper limit – Recover limit).</p> <p>2. When the current measurement &gt;= (Lower limit + Recover limit), the lower limit report is enabled and then it would send out a sensor report when the next measurement is less than the lower limit. After that the lower limit report would be disabled again until the measurement &gt;= (Lower limit + Recover limit).</p> <p>3. Recover limit range: 1 to 5 (0x01 to 0x05).</p> <p>E.g. The default recover limit value is 2, when the measurement is less than (Upper limit – 2), the upper limit report would be enabled one time or when the measurement is more than (Lower limit + 2), the lower limit report would be enabled one time.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>61</Index>
+            <Label lang="en">Out-of-limit state of the Sensors</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>255</Maximum>
+            <ReadOnly>true</ReadOnly>
+            <Size>1</Size>
+            <Help><![CDATA[Out-of-limit state of the Sensors
+<p>Get the out-of-limit state of the Sensors.</p> <p>Bit mask = 0, within the limit.</p> <p>Bit mask = 1, out of the limit.</p> <p>Bit 0 = temperature.</p> <p>Bit 1 = humidity.</p> <p>Bit 2 = luminance.</p> <p>Bit 3 = ultraviolet.</p> <p>The above bit masks are used to indicate whether the current measurements of the Sensors are out of the lower limit.. The below bit masks are used to indicate whether the current measurements of the Sensors are out of the upper limit.</p> <p>Bit 4 = temperature.</p> <p>Bit 5 = humidity.</p> <p>Bit 6 = luminance.</p> <p>Bit 7 = ultraviolet</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>64</Index>
+            <Label lang="en">Default unit of the automatic temperature report </Label>
+            <Type>short</Type>
+            <Default>1</Default>
+            <Minimum>1</Minimum>
+            <Maximum>2</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Default unit of the automatic temperature report 
+<p>Set the default unit of the automatic temperature report in parameter 101- 103. 1 = Celsius. 2 = Fahrenheit.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>81</Index>
+            <Label lang="en">LED function</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>2</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Enable LED blinking</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Disable PIR LED</Label>
+            </Item>
+            <Item>
+                <Value>2</Value>
+                <Label lang="en">Disable ALL</Label>
+            </Item>
+            <Help><![CDATA[Disable/Enable LED function
+<p>Enable/disable the LED blinking.<br />0 = Enable LED blinking.<br />1 = Disable LED blinking only when the PIR is triggered.<br />2 = Completely disable LED for motion, wakeup, and sensor report.  </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>100</Index>
+            <Label lang="en">Set parameters 101-103 to default.			</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>1</Size>
+            <Help><![CDATA[Reset 101-103 to defaults
+<p>Set 101-103 to default.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>101</Index>
+            <Label lang="en">Group 1 Periodic Reports</Label>
+            <Type>short</Type>
+            <Default>241</Default>
+            <Minimum>0</Minimum>
+            <Maximum>65535</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Periodic reports to send to Group 1
+<p>This value is a combination number made up of the sum of the values for the individual sensors and battery. The sensors have these values:</p> <ul><li>Battery=1</li> <li>Ultraviolet=16</li> <li>Temperature=32</li> <li>Humidity=64</li> <li>Light=128</li> </ul><p>1+16+32+64+128 = 241 and is the default value</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>102</Index>
+            <Label lang="en">Group 2 Periodic Reports			</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>65535</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Periodic reports to send to Group 2
+<p>This value is a combination number made up of the sum of the values for the individual sensors and battery. The sensors have these values:</p> <ul><li>Battery=1</li> <li>Ultraviolet=16</li> <li>Temperature=32</li> <li>Humidity=64</li> <li>Light=128</li> </ul>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>103</Index>
+            <Label lang="en">Group 3 Periodic Reports			</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>65535</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Periodic reports to send to Group 3
+<p>This value is a combination number made up of the sum of the values for the individual sensors and battery. The sensors have these values:</p> <ul><li>Battery=1</li> <li>Ultraviolet=16</li> <li>Temperature=32</li> <li>Humidity=64</li> <li>Light=128</li> </ul>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>110</Index>
+            <Label lang="en">Set parameters 111-113 to default.			</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>1</Size>
+            <Help><![CDATA[Set parameters 111-113 to default.	
+<p>Set parameters 111-113 to default.   </p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>111</Index>
+            <Label lang="en">Group 1 Report Interval</Label>
+            <Type>short</Type>
+            <Default>3600</Default>
+            <Minimum>5</Minimum>
+            <Maximum>2678400</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[How often to update Group 1
+<p>The interval time of sending reports in Report group 1 (Valid values 0x05-0x28DE80).</p>
+<ol>
+<li>The unit of interval time is second if USB power.</li>
+<li>If battery power, the minimum interval time is 60 minutes by default, for example, if the value is set to be more than 5 and less than 3600, the interval time is 60 minutes, if the value is set to be more than 3600 and less than 7200, the interval time is 120 minutes. You can also change the minimum interval time to 4 minutes via setting the interval value(3 bytes) to 240 in Wake Up Interval Set CC.</li>
+</ol>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>112</Index>
+            <Label lang="en">Group 2 Report Interval</Label>
+            <Type>short</Type>
+            <Default>3600</Default>
+            <Minimum>5</Minimum>
+            <Maximum>2678400</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Group 2 Report Interval
+<p>The interval time of sending reports in Report group 2 (Valid values 0x05-<br />0x28DE80).<br />Note:<br />1. The unit of interval time is second if USB power.<br />2. If battery power, the minimum interval time is 60 minutes by default, for<br />example, if the value is set to be more than 5 and less than 3600, the interval<br />time is 60 minutes, if the value is set to be more than 3600 and less than 7200,<br />the interval time is 120 minutes. You can also change the minimum interval time<br />to 4 minutes via setting the interval value(3 bytes) to 240 in Wake Up Interval Set<br />CC.</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>113</Index>
+            <Label lang="en">Group 3 Report Interval</Label>
+            <Type>short</Type>
+            <Default>3600</Default>
+            <Minimum>5</Minimum>
+            <Maximum>2678400</Maximum>
+            <Size>4</Size>
+            <Help><![CDATA[Group 3 Report Interval
+<p>The interval time of sending reports in Report group 3</p>
+<ol>
+<li>The unit of interval time is second if USB power.</li>
+<li>If battery power, the minimum interval time is 60 minutes by default, for example, if the value is set to be more than 5 and less than 3600, the interval time is 60 minutes, if the value is set to be more than 3600 and less than 7200, the interval time is 120 minutes. You can also change the minimum interval time to 4 minutes via setting the interval value(3 bytes) to 240 in Wake Up Interval Set CC.</li>
+</ol>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>201</Index>
+            <Label lang="en">Temperature Calibration</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>-128</Minimum>
+            <Maximum>127</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[Temperature calibration in 0.1 deg steps
+<p>Temperature calibration (the available value range is [-128,127] or [-12.8°C ,12.7 °C ] ).<br /><strong>Note</strong>:</p> <ol><li>High byte is the calibration value. Low byte is the unit (0x01=Celsius, 0x02=Fahrenheit).</li> <li>The calibration value (high byte) contains one decimal point. E.g. if the value is set to 20 (0x1401), the calibration value is 2.0°C (EU/AU version) or if the value is set to 20 (0x1402), the calibration value is 2.0 °F (US version)</li> <li>The calibration value = standard value - measure value. °C and the standard value = 23.2 °C , so the calibration value= 23.2 °C - 25.3 °C = -2.1 °C (0xEB). If the measure value =30.1 °C and the standard value = 33.2 °C , so the calibration value= 33.2 °C - 30.1 °C =3.1 °C (0x1F).</li> </ol>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>202</Index>
+            <Label lang="en">Humidity Sensor Calibration</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>-50</Minimum>
+            <Maximum>50</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Humidity Sensor Calibration
+<p>Humidity sensor calibration (the available value range is [-50, 50]).<br />The calibration value = standard value - measure value.<br />E.g. If measure value =80RH and the standard value = 75RH, so the calibration<br />value= 75RH – 80RH= -5RH (0xFB).<br />If the measure value =85RH and the standard value = 90RH, so the calibration<br />value= 90RH – 85RH=5RH (0x05).</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>203</Index>
+            <Label lang="en">Luminance Sensor Calibration</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>-1000</Minimum>
+            <Maximum>1000</Maximum>
+            <Size>2</Size>
+            <Help><![CDATA[Luminance Sensor Calibration
+<p>Luminance sensor calibration (the available value range is [-1000, 1000]).<br />The calibration value = standard value - measure value.<br />E.g. If measure value =800Lux and the standard value = 750Lux, so the<br />calibration value= 750 – 800= -50 (0xFFCE).<br />If the measure value =850Lux and the standard value = 900Lux, so the calibration<br />value= 900 – 850=50 (0x0032).</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>204</Index>
+            <Label lang="en">Ultraviolet Sensor Calibration</Label>
+            <Type>short</Type>
+            <Default>0</Default>
+            <Minimum>-10</Minimum>
+            <Maximum>10</Maximum>
+            <Size>1</Size>
+            <Help><![CDATA[Ultraviolet Sensor Calibration
+<p>Ultraviolet sensor calibration (the available value range is [-10, 10]).<br />The calibration value = standard value - measure value.<br />E.g. If measure value =9 and the standard value = 8, so the calibration value= 8 –<br />9= -1 (0xFE).<br />If the measure value =7 and the standard value = 9, so the calibration value= 9 –<br />7=2 (0x02).</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>252</Index>
+            <Label lang="en">Lock Configuration Parameters			</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1</Maximum>
+            <Size>1</Size>
+            <Item>
+                <Value>0</Value>
+                <Label lang="en">Disable</Label>
+            </Item>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Enable</Label>
+            </Item>
+            <Help><![CDATA[Enable or Disable changing of configuration parameters
+<p>Enable/disable Configuration Locked (0 =disable, 1 = enable).</p>
+            ]]></Help>
+        </Parameter>
+
+        <Parameter>
+            <Index>255</Index>
+            <Label lang="en">Reset to default factory settings</Label>
+            <Type>list</Type>
+            <Default>0</Default>
+            <Minimum>0</Minimum>
+            <Maximum>1431655765</Maximum>
+            <WriteOnly>true</WriteOnly>
+            <Size>4</Size>
+            <Item>
+                <Value>1</Value>
+                <Label lang="en">Resets all configuration parameters to defaults</Label>
+            </Item>
+            <Item>
+                <Value>1431655765</Value>
+                <Label lang="en">Reset to default factory settings and be excluded</Label>
+            </Item>
+        </Parameter>
+
+    </Configuration>
+
+    <Associations>
+
+        <Group>
+            <Index>1</Index>
+            <Label lang="en">Group 1</Label>
+            <Maximum>5</Maximum>
+            <SetToController>true</SetToController>
+        </Group>
+
+        <Group>
+            <Index>2</Index>
+            <Label lang="en">Group 2</Label>
+            <Maximum>5</Maximum>
+        </Group>
+
+        <Group>
+            <Index>3</Index>
+            <Label lang="en">Group 3</Label>
+            <Maximum>5</Maximum>
+        </Group>
+
+    </Associations>
+
+</Product>

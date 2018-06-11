@@ -1103,6 +1103,7 @@
 			<Label lang="en">MultiSensor 6</Label>
 			<ConfigFile VersionMax="1.6">aeon/zw100-a.xml</ConfigFile>
 			<ConfigFile VersionMin="1.7">aeon/zw100-17.xml</ConfigFile>
+            <ConfigFile VersionMin="1.010">aeon/zw100.xml</ConfigFile>
 		</Product>
 		<Product>
 			<Reference>
@@ -1350,6 +1351,27 @@
 			<Label lang="en">Door/Window Sensor 6</Label>
 			<ConfigFile>aeon/zw112.xml</ConfigFile>
 		</Product>
+        <Product>
+            <Reference>
+                <Type>0002</Type>
+                <Id>0074</Id>
+            </Reference>
+            <Reference>
+                <Type>0003</Type>
+                <Id>0074</Id>
+            </Reference>
+            <Reference>
+                <Type>0103</Type>
+                <Id>0074</Id>
+            </Reference>
+            <Reference>
+                <Type>0203</Type>
+                <Id>0074</Id>
+            </Reference>
+            <Model>ZW116</Model>
+            <Label lang="en">Aeotec Nano Switch</Label>
+            <ConfigFile>aeon/zw116.xml</ConfigFile>
+        </Product>
 	</Manufacturer>
 	<Manufacturer>
 		<Id>0098</Id>
@@ -3508,6 +3530,10 @@
 				<Type>0002</Type>
 				<Id>FFFF</Id>
 			</Reference>
+            <Reference>
+                <Type>0002</Type>
+                <Id>0209</Id>
+            </Reference>
 			<Model>YRD220</Model>
 			<Label lang="en">Yale Real Living Touchscreen Deadbolt</Label>
 			<ConfigFile>yale/yrd220.xml</ConfigFile>
@@ -4049,4 +4075,17 @@
 			<ConfigFile>fireangle/zst630.xml</ConfigFile>
 		</Product>
 	</Manufacturer>
+    <Manufacturer>
+        <Id>0260</Id>
+        <Name>Heiman Technology Co. Ltd</Name>
+        <Product>
+            <Reference>
+              <Type>8002</Type>
+              <Id>1000</Id>
+            </Reference>
+            <Model>HS1SA-Z</Model>
+            <Label lang="en">Smart Smoke Detector</Label>
+            <ConfigFile>heiman/hs1sa.xml</ConfigFile>
+        </Product>
+    </Manufacturer> 
 </Manufacturers>
